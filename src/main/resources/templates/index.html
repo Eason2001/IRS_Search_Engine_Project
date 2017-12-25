@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Uwindsor-go Home Search</title>
+<link href="/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/css/index.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="container">
+	<div id="bd">
+        <div id="main">
+        	<h1 class="title">
+                <a class="advanced" href="/"><div class="logo large"></div></a>
+            </h1>
+            <div class="nav ue-clear">
+            	<ul class="searchList">
+                    <li class="searchItem current">Articles</li>
+                    <li class="searchItem">Webpages</li>
+                    <li class="searchItem">Music</li>
+                    <li class="searchItem">Movies</li>
+                    <li class="searchItem">Pictures</li>
+                    <li class="searchItem">Wikipedia</li>
+                    <li class="searchItem">SocialMedia</li>
+                </ul>
+            </div>
+            <div class="inputArea">
+                <form action="/result" >
+            	    <input type="text" name="queryString" class="searchInput" />
+                    <input type="hidden" name="pageIndex" value="0" />
+                    <input type="submit" value="" class="searchButton" />
+                    <a class="advanced" href="/genIndex">MakeIndex</a><br/>
+                    <!--<a class="advanced" href="/advanced">Advanced</a>-->
+                </form>
+                <ul class="dataList">
+                	<li>information</li>
+                    <li>database system</li>
+                    <li>machine learning</li>
+                    <li>artifical intelligent</li>
+                    <li>big data analysis</li>
+                </ul>
+            </div>
+            
+            <div class="historyArea">
+            	<p class="history">
+                	<label>Hot search：</label>
+                    <a href="#">UI Design</a>|
+                    <a href="#">Java tutorials</a>|
+                    <a href="#">PHP Website</a>|
+                    <a href="#">Artifical Intelligent</a>
+                </p>
+                <p class="history">
+                	<label>My search：</label>
+                    <a href="#">information retrival</a>|
+                    <a href="#">software engineering</a>|
+                    <a href="#">movies</a>|
+                    <a href="#">software interns</a>
+                </p>
+            </div>
+        </div><!-- End of main -->
+    </div><!--End of bd-->
+
+    <div class="foot">
+        <div class="wrap">
+            <div class="copyright">Copyright &copy;uwindsor.ca Reserved  E-mail:pan14@uwindsor.ca</div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+<script type="text/javascript">
+	$('.searchList').on('click', '.searchItem', function(){
+		$('.searchList .searchItem').removeClass('current');
+		$(this).addClass('current');	
+	});
+	
+	// 联想下拉显示隐藏
+	$('.searchInput').on('focus', function(){
+		$('.dataList').show()
+    });
+	
+	// 联想下拉点击
+	$('.dataList').on('click', 'li', function(){
+		var text = $(this).text();
+		$('.searchInput').val(text);
+		$('.dataList').hide()
+	});
+	
+	hideElement($('.dataList'), $('.searchInput'));
+</script>
+</html>

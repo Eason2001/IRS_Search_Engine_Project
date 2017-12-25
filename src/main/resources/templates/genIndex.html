@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Uwindsor-go Generating Index</title>
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/css/index.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="container">
+    <div id="bd">
+        <div id="main">
+            <h1 class="title">
+                <a class="advanced" href="/"><div class="logo large"></div></a>
+            </h1>
+
+            <div class="inputArea">
+                <form action="/genIndex" method="post">
+                    <h2>The path of original documents:</h2>
+                    <input id="searchInput1" type="text" name="docsPath" value="" class="searchInput" />
+                    <h2>The path to generate and store index:</h2>
+                    <input id="searchInput2" type="text" name="indexPath" value="" class="searchInput" />
+                    <input type="submit" value="Submit to Generate"  />
+                </form>
+                <ul id="dataList1" class="dataList">
+                    <li>/Users/Kevin/Documents/InformationRetriveSys/lucenesearch/data/citeseer2</li>
+                    <li>/Users/Kevin/Documents/InformationRetriveSys/lucenesearch/data/citeseer2_index</li>
+                    <li>/Users/Kevin/Documents/InformationRetriveSys/lucenesearch/</li>
+                    <li>/Users/Kevin/Documents/InformationRetriveSys/data/docs</li>
+                    <li>/Users/Kevin/Documents/InformationRetriveSys/data/docs_index</li>
+                </ul>
+                <ul id="dataList2" class="dataList">
+                    <li>/Users/Kevin/Documents/InformationRetriveSys/lucenesearch/data/citeseer2</li>
+                    <li>/Users/Kevin/Documents/InformationRetriveSys/lucenesearch/data/citeseer2_index</li>
+                    <li>/Users/Kevin/Documents/InformationRetriveSys/lucenesearch/</li>
+                    <li>/Users/Kevin/Documents/InformationRetriveSys/data/docs</li>
+                    <li>/Users/Kevin/Documents/InformationRetriveSys/data/docs_index</li>
+                </ul>
+            </div>
+
+
+        </div><!-- End of main -->
+    </div><!--End of bd-->
+
+    <div class="foot">
+        <div class="wrap">
+            <div class="copyright">Copyright &copy;uwindsor.ca Reserved  E-mail:pan14@uwindsor.ca</div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+<script type="text/javascript">
+
+    // 联想下拉显示隐藏
+    $('#searchInput1').on('focus', function(){
+        $('#dataList1').show()
+    });
+
+    // 联想下拉点击
+    $('#dataList1').on('click', 'li', function(){
+        var text = $(this).text();
+        $('#searchInput1').val(text);
+        $('#dataList1').hide()
+    });
+
+    // 联想下拉显示隐藏
+    $('#searchInput2').on('focus', function(){
+        $('#dataList2').show()
+    });
+
+    // 联想下拉点击
+    $('#dataList2').on('click', 'li', function(){
+        var text = $(this).text();
+        $('#searchInput2').val(text);
+        $('#dataList2').hide()
+    });
+
+
+
+    hideElement($('.dataList'), $('.searchInput'));
+</script>
+</html>
+
+

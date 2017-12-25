@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" >
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Uwindsor-go Home Search</title>
+<link href="/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/css/index.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="container">
+	<div id="bd">
+        <div id="main">
+        	<h1 class="title">
+                <a class="advanced" href="/"><div class="logo large"></div></a>
+            </h1>
+
+            <div class="resultItem" >
+                <div class="itemHead" align="center">
+                    <p>
+                        <h1 class="title" th:utext="${article.title}"></h1>
+                        <br/>
+                    </p>
+                </div>
+                <div class="itemBody">
+                    <p>
+                        <span class="value" th:utext="${article.content}"></span>
+                    </p>
+                </div>
+                <div class="itemFoot">
+                    <p>
+                            <br/>
+                            <span class="info">
+                            	<label>docId：</label>
+                                <span class="value" th:text="${article.docId}"></span>
+                            </span>
+                            <span class="info">
+                            	<label>Author：</label>
+                                <span class="value" th:text="${article.author}"></span>
+                            </span>
+                            <span class="info">
+                            	<label>Publish year：</label>
+                                <span class="value" th:text="${article.year}"></span>
+                            </span>
+                    </p>
+                </div>
+            </div>
+
+
+        </div><!-- End of main -->
+    </div><!--End of bd-->
+
+    <div class="foot">
+        <div class="wrap">
+            <div class="copyright"></div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+<script type="text/javascript">
+	$('.searchList').on('click', '.searchItem', function(){
+		$('.searchList .searchItem').removeClass('current');
+		$(this).addClass('current');	
+	});
+	
+	// 联想下拉显示隐藏
+	$('.searchInput').on('focus', function(){
+		$('.dataList').show()
+    });
+	
+	// 联想下拉点击
+	$('.dataList').on('click', 'li', function(){
+		var text = $(this).text();
+		$('.searchInput').val(text);
+		$('.dataList').hide()
+	});
+	
+	hideElement($('.dataList'), $('.searchInput'));
+</script>
+</html>

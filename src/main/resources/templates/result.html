@@ -1,0 +1,335 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Uwindsor-go Search results</title>
+<link href="/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/css/result.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="container">
+	<div id="hd" class="ue-clear">
+        <a class="advanced" href="/"><div class="logo"></div></a>
+        <div class="inputArea">
+            <form action="/result" >
+        	<input id="qString" type="text" name="queryString" th:value="${ori_queryString}" class="searchInput" />
+            <input type="hidden" name="pageIndex" value="0" />
+            <input type="submit" value="" class="searchButton" />
+                <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a th:href="@{'/word2vec?keyword='+ ${ori_queryString}}">Word2Vec</a>&nbsp;&nbsp;-->
+                <!--<a href="/clustering">SVD&amp;K-Mean</a>-->
+            </form>
+            <p>
+                <br/>
+                <span class="orderOpt">
+                        <span>Do you mean?</span>&nbsp;&nbsp;
+                        <span th:each="simWord:${simWords}">
+                            &nbsp;&nbsp;<a  href="#" class="title" th:utext="${simWord}" ></a>
+                        </span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="/clustering">SVD&amp;K-Mean</a></span>
+                </span>
+            </p>
+
+
+
+
+
+
+            <ul class="dataList">
+                <li>information</li>
+                <li>database system</li>
+                <li>machine learning</li>
+                <li>artifical intelligent</li>
+                <li>big data analysis</li>
+            </ul>
+        </div>
+    </div>
+    <div class="nav">
+        <ul class="searchList">
+            <li class="searchItem current">Articles</li>
+            <li class="searchItem">Webpages</li>
+            <li class="searchItem">Music</li>
+            <li class="searchItem">Movies</li>
+            <li class="searchItem">Pictures</li>
+            <li class="searchItem">Wikipedia</li>
+            <li class="searchItem">SocialMedia</li>
+        </ul>
+        <a href="#" class="tips">What is category search?</a>
+    </div>
+	<div id="bd" class="ue-clear">
+        <div id="main">
+        	<div class="sideBar">
+            	<div class="subfield">Category</div>
+                <ul class="subfieldContext">
+                	<li>
+                    	<span class="name">Conference</span>
+                        <span class="unit">(9862)</span>
+                    </li>
+                    <li>
+                    	<span class="name">Journal</span>
+                        <span class="unit">(485)</span>
+                    </li>
+                    <li>
+                    	<span class="name">Magazine</span>
+                        <span class="unit">(1564)</span>
+                    </li>
+                    <li>
+                    	<span class="name">News</span>
+                        <span class="unit">(485)</span>
+                    </li>
+                    <li>
+                    	<span class="name">Institution</span>
+                        <span class="unit">(485)</span>
+                    </li>
+                    <li class="more">
+                    	<a href="#">
+                        	<span class="text">More</span>
+                        	<i class="moreIcon"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="subfield">Publish Year</div>
+                <ul class="subfieldContext">
+                	<li>
+                    	<span class="name">2013</span>
+                        <span class="unit">(9862)</span>
+                    </li>
+                    <li>
+                    	<span class="name">2012</span>
+                        <span class="unit">(485)</span>
+                    </li>
+                    <li>
+                    	<span class="name">2011</span>
+                        <span class="unit">(1564)</span>
+                    </li>
+                    <li>
+                    	<input type="text" />
+                        <span class="divsion">-</span>
+                        <input type="text" />
+                    </li>
+                    <li class="more define">
+                    	<a href="#">
+                        	<span class="text">Customize</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <div class="subfield">Search Engine</div>
+                <ul class="subfieldContext">
+                	<li>
+                    	<span class="name">Google</span>
+                    </li>
+                    <li>
+                    	<span class="name">Baidu</span>
+                    </li>
+                    <li>
+                    	<span class="name">Bing</span>
+                    </li>
+                    <li>
+                    	<span class="name">Yahoo</span>
+                    </li>
+                    <li class="more">
+                    	<a href="#">
+                        	<span class="text">More</span>
+                        	<i class="moreIcon"></i>
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="subfield">You want?</div>
+                <ul class="subfieldContext">
+                	<li>
+                    	<span class="name">Software</span>
+                    </li>
+                    <li>
+                    	<span class="name">Algorithm</span>
+                    </li>
+                </ul>
+                
+                <a href="#" class="reset">Rest Search</a>
+                
+                <div class="sideBarShowHide">
+                	<a href="#" class="icon"></a>
+                </div>
+            </div>
+            <div class="resultArea">
+            	<p class="resultTotal">
+                	<span class="info">Found about &nbsp;<span class="totalResult" th:text="${totalHits}"></span>&nbsp;articles(time spent:&nbsp;<span class="time" th:text="${timeSpent}"></span> mill seconds), total pages: <span class="totalPage" th:text="${articlelist[0].totalhits}/${pageSize}"></span></span>
+                    <span class="orderOpt">
+                    	<a href="#" class="byTime">By Time</a>
+                        <a href="#" class="byDependence">By Relevance</a>
+                    </span>
+                </p>
+                <div class="resultList">
+                    <!--list the articles-->
+                	<div class="resultItem" th:each="article : ${articlelist}">
+                    	<div class="itemHead">
+                            <a  th:href="'/articledetail?docId='+${article.docId}"  target="_blank" class="title" th:utext="${article.title}"></a>
+                            <span class="divsion">-</span>
+                            <span class="fileType">
+                            	<span class="label">Publisher：</span>
+                                <span class="value" th:text="${article.publisher}"></span>
+                            </span>
+                            <span class="dependValue">
+                            	<span class="label">PageRank：</span>
+                                <span class="value" th:text="${article.score}"></span>
+                            </span>
+                        </div>
+                        <div class="itemBody">
+                            <span class="value" th:utext="${article.content}"></span>
+                        </div>
+                        <div class="itemFoot">
+                            <span class="info">
+                            	<label>docId：</label>
+                                <span class="value" th:text="${article.docId}"></span>
+                            </span>
+                            <span class="info">
+                            	<label>Author：</label>
+                                <span class="value" th:text="${article.author}"></span>
+                            </span>
+                            <span class="info">
+                            	<label>Publish year：</label>
+                                <span class="value" th:text="${article.year}"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <!--list the articles-->
+                </div>
+                <!-- 分页 -->
+                <div class="pagination ue-clear"></div>
+                <!-- 相关搜索 -->
+                <div class="dependSearch ue-clear">
+                    <h6>Relevant Search</h6>
+                    <div class="searchList">
+                        <p>
+                            <a href="#">Web Design</a>
+                            <a href="#">Data Analysis</a>
+                            <a href="#">Framework Design</a>
+                            <a href="#">Network Security</a>
+                        </p>
+                        <p>
+                            <a href="#">Machine learning</a>
+                            <a href="#">Algorithm</a>
+                            <a href="#">Cloud Computing</a>
+                            <a href="#">Interative Design</a>
+                        </p>
+                    </div>
+                </div>
+                
+                <!--结果中搜索-->
+                <div class="inputArea searchInResult">
+                    <input type="text" class="searchInput" />
+                    <input type="button" class="searchButton" />
+                    <a class="inResult" href="#">Search in result</a>
+                </div>
+            </div>
+            <div class="historyArea">
+            	<div class="hotSearch">
+                	<h6>Hot search：</h6>
+                    <ul class="historyList">
+                    	<li><a href="#">UI Design</a></li>
+                        <li><a href="#">Java tutorials</a></li>
+                        <li><a href="#">PHP Website</a></li>
+                        <a href="#">Artifical Intelligent</a>
+                        <li><a href="#">Data Analysis</a></li>
+                        <li><a href="#">Cloud</a></li>
+                        <li><a href="#">Web service</a></li>
+                    </ul>
+                </div>
+                <div class="mySearch">
+                	<h6>My search：</h6>
+                    <ul class="historyList">
+                    	<li><a href="#">information retrival</a></li>
+                        <li><a href="#">software engineering</a></li>
+                        <li><a href="#">movies</a></li>
+                        <li><a href="#">software interns</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div><!-- End of main -->
+    </div><!--End of bd-->
+</div>
+
+<div id="foot">Copyright &copy;uwindsor.ca Reserved  E-mail:pan14@uwindsor.ca</div>
+</body>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+<script type="text/javascript" src="/js/pagination.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    function setHeight(){
+        if($('#container').outerHeight() < $(window).height()){
+            $('#container').height('$($(window).height()-33)');
+        }
+    }
+	
+	$.each($('.subfieldContext'), function(i, item){
+		$(this).find('li:gt(2)').hide().end().find('li:last').show();		
+	});
+	
+	$('.subfieldContext .more').click(function(e){
+		var $more = $(this).parent('.subfieldContext').find('.more');
+		if($more.hasClass('show')){
+			
+			if($(this).hasClass('define')){
+				$(this).parent('.subfieldContext').find('.more').removeClass('show').find('.text').text('自定义');
+			}else{
+				$(this).parent('.subfieldContext').find('.more').removeClass('show').find('.text').text('更多');	
+			}
+			$(this).parent('.subfieldContext').find('li:gt(2)').hide().end().find('li:last').show();
+	    }else{
+			$(this).parent('.subfieldContext').find('.more').addClass('show').find('.text').text('收起');
+			$(this).parent('.subfieldContext').find('li:gt(2)').show();	
+		}
+		
+	});
+	
+	$('.sideBarShowHide a').click(function(e) {
+		if($('#main').hasClass('sideBarHide')){
+			$('#main').removeClass('sideBarHide');
+			$('#container').removeClass('sideBarHide');
+		}else{
+			$('#main').addClass('sideBarHide');	
+			$('#container').addClass('sideBarHide');
+		}
+        
+    });
+
+	setHeight();
+	$(window).resize(function(){
+		setHeight();	
+	});
+
+    //分页, 500记录总数
+    $(".pagination").pagination(/*[[${articlelist[0].totalhits}]]*/, {
+        current_page :/*[[${ori_pageIndex}]]*/, //当前页码
+        items_per_page :/*[[${pageSize}]]*/,
+        display_msg :true,
+        callback :pageselectCallback
+    });
+    function pageselectCallback(page_id, jq) {
+        // alert("当前页id(由0开始)：" + page_id + "，\n每页显示：" + this.items_per_page + "条数据");
+    }
+
+    $('.searchList').on('click', '.searchItem', function(){
+        $('.searchList .searchItem').removeClass('current');
+        $(this).addClass('current');
+    });
+
+    // 联想下拉显示隐藏
+    $('.searchInput').on('focus', function(){
+        $('.dataList').show()
+    });
+
+    // 联想下拉点击
+    $('.dataList').on('click', 'li', function(){
+        var text = $(this).text();
+        $('.searchInput').val(text);
+        $('.dataList').hide()
+    });
+
+    hideElement($('.dataList'), $('.searchInput'));
+    /*]]>*/
+</script>
+
+</html>
